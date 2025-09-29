@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SYNAPSE DIGITAL | Elevated Digital Services</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Inter Font -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+      /* Deep Black and Red Theme Configuration */
+      :root {
+        --color-black: #0a0a0a;
+        --color-red-primary: #dc2626; /* Red 600 */
+        --color-red-secondary: #f87171; /* Red 400 */
+        --color-gray-text: #d1d5db;
+        /* FIX: Define header height for calculation and scroll padding */
+        --header-height: 4.5rem;
+      }
+
+      /* FIX: Apply scroll padding for smooth anchor scrolling so section titles are not hidden */
+      html {
+        scroll-padding-top: var(--header-height);
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--color-black);
+        color: var(--color-gray-text);
+        overflow-x: hidden; /* Prevent horizontal scroll from animations */
+      }
+
+      /* Custom Tailwind/CSS Overrides */
+      .text-neon-red {
+        color: var(--color-red-secondary);
+      }
+      .bg-fire-red {
+        background-color: var(--color-red-primary);
+      }
+      .hover\:bg-fire-red-dark:hover {
+        background-color: #b91c1c;
+      }
+      .border-fire-red {
+        border-color: var(--color-red-primary);
+      }
+
+      /* ------------------------------------------- */
+      /* 1. SCROLL REVEAL ANIMATION */
+      /* ------------------------------------------- */
+      .reveal-element {
+        opacity: 0;
+        transform: translateY(30px) scale(0.98);
+        transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+          transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+      }
+      .reveal-visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      /* ------------------------------------------- */
+      /* 2. HERO BACKGROUND ANIMATION (Minimalistic Grid) */
+      /* ------------------------------------------- */
+      .hero-bg-effect {
+        position: relative;
+        z-index: 10;
+      }
+
+      .hero-bg-effect::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        background: radial-gradient(
+            circle at 50% 50%,
+            rgba(220, 38, 38, 0.05) 1px,
+            transparent 1px
+          ),
+          linear-gradient(to right, rgba(10, 10, 10, 1) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(10, 10, 10, 1) 1px, transparent 1px);
+        background-size: 50px 50px, 50px 50px, 50px 50px;
+        opacity: 0.2;
+        animation: pulse-grid 20s infinite ease-in-out;
+      }
+
+      @keyframes pulse-grid {
+        0% {
+          background-position: 0% 0%;
+        }
+        50% {
+          background-position: 100% 100%;
+        }
+        100% {
+          background-position: 0% 0%;
+        }
+      }
+
+      /* 3. CTA PULSE GLOW */
+      .btn-pulse {
+        box-shadow: 0 0 10px rgba(220, 38, 38, 0.5);
+        animation: cta-pulse 3s infinite ease-in-out;
+      }
+
+      @keyframes cta-pulse {
+        0%,
+        100% {
+          box-shadow: 0 0 8px rgba(220, 38, 38, 0.5);
+        }
+        50% {
+          box-shadow: 0 0 20px rgba(220, 38, 38, 1);
+        }
+      }
+
+      /* 4. INTERACTIVE CARD (3D TILT EFFECT) */
+      .interactive-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transform-style: preserve-3d;
+      }
+      .interactive-card:hover {
+        box-shadow: 0 25px 50px -12px rgba(220, 38, 38, 0.4);
+        transform: scale(1.03) translateZ(20px);
+      }
+
+      /* FIX: Hero height adjustment to push content below the fixed header */
+      .hero-adjusted-height {
+        min-height: calc(100vh - var(--header-height));
+      }
+
+      /* 5. HERO TEXT ALIGNMENT AND MEDIA QUERIES */
+      /* Base size (Mobile) */
+      .super-hero-text {
+        font-size: 4rem; /* Adjusted for better small screen fit */
+        line-height: 0.95;
+      }
+
+      /* Medium screens (e.g., Tablet) */
+      @media (min-width: 768px) {
+        .super-hero-text {
+          font-size: 8rem;
+        }
+      }
+
+      /* Large screens (Desktop) */
+      @media (min-width: 1024px) {
+        .super-hero-text {
+          font-size: 10rem;
+        }
+      }
+
+      /* Extra-large screens (Explicit media query usage as requested) */
+      @media (min-width: 1440px) {
+        .super-hero-text {
+          font-size: 11.5rem; /* Pushing the size slightly higher for impact */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation Bar (Fixed) -->
+    <header
+      class="sticky top-0 z-50 bg-black bg-opacity-95 shadow-lg backdrop-blur-sm border-b border-gray-900/50"
+    >
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <!-- Logo/Agency Name -->
+        <a
+          href="#"
+          class="text-3xl font-extrabold tracking-tighter text-white hover:text-neon-red transition duration-300"
+        >
+          WEBLO<span class="text-fire-red"> SERVICES</span>
+        </a>
+        <!-- Menu Links -->
+        <div class="space-x-8 hidden md:flex font-semibold">
+          <a
+            href="#about-us"
+            class="text-gray-400 hover:text-fire-red transition duration-300 transform hover:-translate-y-0.5"
+            >About Us</a
+          >
+          <a
+            href="#contact"
+            class="text-gray-400 hover:text-fire-red transition duration-300 transform hover:-translate-y-0.5"
+            >Contact Info</a
+          >
+        </div>
+      </nav>
+    </header>
+
+    <!-- 1. Hero Section - Now uses the adjusted height to sit below the header -->
+    <section
+      id="hero"
+      class="hero-bg-effect hero-adjusted-height flex items-center justify-center text-center px-4 overflow-hidden"
+    >
+      <div class="reveal-element w-full">
+        <!-- Adjusted H1 to use custom class for better responsive control -->
+        <h1
+          class="font-black tracking-tighter mb-6 text-white leading-none super-hero-text"
+        >
+          <span class="block reveal-element" style="transition-delay: 0.1s"
+            >FUTURE-PROOF</span
+          >
+          <span
+            class="block text-fire-red reveal-element"
+            style="transition-delay: 0.2s"
+            >WEB <span class="text-white">&</span> SCALE</span
+          >
+        </h1>
+        <p
+          class="text-xl md:text-2xl mt-8 mb-12 text-gray-400 max-w-2xl mx-auto reveal-element"
+          style="transition-delay: 0.3s"
+        >
+          Engineering sophisticated platforms and high-conversion experiences
+          for the modern enterprise.
+        </p>
+        <a
+          href="#contact"
+          class="inline-block bg-fire-red text-white text-lg font-bold py-3 px-10 rounded-full btn-pulse transition duration-300 transform hover:scale-105 reveal-element"
+          style="transition-delay: 0.4s"
+        >
+          Initiate Project Brief &rarr;
+        </a>
+      </div>
+    </section>
+
+    <!-- 2. Portfolio Section -->
+
+    <!-- 3. About Us Section (Core Technologies) -->
+    <section id="about-us" class="py-24 border-t border-gray-900 bg-[#111]">
+      <div class="container mx-auto px-6 reveal-element">
+        <h2 class="text-5xl font-extrabold mb-16 text-center text-white">
+          Our Technology Stack
+        </h2>
+
+        <div class="grid grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Tech 1 -->
+
+          <div
+            class="interactive-card bg-gray-900 p-6 rounded-lg shadow-xl border-l-4 border-fire-red/70 reveal-element"
+          >
+            <p class="text-xl font-bold text-white mb-1">Frontend</p>
+            <p class="text-gray-400">React, Next.js, TypeScript</p>
+          </div>
+          <!-- Tech 2 -->
+          <div
+            class="interactive-card bg-gray-900 p-6 rounded-lg shadow-xl border-l-4 border-fire-red/70 reveal-element"
+            style="transition-delay: 0.1s"
+          >
+            <p class="text-xl font-bold text-white mb-1">Backend</p>
+            <p class="text-gray-400">Node.js, Go, Python (FastAPI)</p>
+          </div>
+          <!-- Tech 3 -->
+          <div
+            class="interactive-card bg-gray-900 p-6 rounded-lg shadow-xl border-l-4 border-fire-red/70 reveal-element"
+            style="transition-delay: 0.2s"
+          >
+            <p class="text-xl font-bold text-white mb-1">Web Developement</p>
+            <p class="text-gray-400">HTML, CSS, JavaScript, Tailwind</p>
+          </div>
+        </div>
+
+        <div
+          class="text-center mt-16 reveal-element"
+          style="transition-delay: 0.4s"
+        >
+          <p class="text-2xl text-gray-300 mb-4 font-light">
+            "We leverage the best technology, not just the trendiest."
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Contact Info / CTA Footer -->
+    <section id="contact" class="py-24 border-t border-gray-900 bg-black">
+      <div class="container mx-auto px-6 text-center reveal-element">
+        <h2 class="text-5xl font-extrabold mb-4 text-white">
+          Let's Create Something <span class="text-fire-red">Exceptional</span>.
+        </h2>
+        <p class="text-xl text-gray-400 mb-12 max-w-3xl mx-auto">
+          Ready to transform your concept into a digital powerhouse? Contact our
+          team for a confidential consultation.
+        </p>
+
+        <div
+          class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-8"
+        >
+          <a
+            href="mailto:webloservices@gmail.com"
+            class="p-4 bg-gray-900 rounded-lg border border-fire-red/50 hover:border-fire-red transition duration-300 reveal-element interactive-card"
+            style="transition-delay: 0.5s"
+          >
+            <p class="text-neon-red font-semibold mb-1">Email Inquiry</p>
+            <span class="text-white text-xl font-medium"
+              >webloservices@gmail.com</span
+            >
+          </a>
+          <a
+            href="tel:+15551234567"
+            class="p-4 bg-gray-900 rounded-lg border border-fire-red/50 hover:border-fire-red transition duration-300 reveal-element interactive-card"
+            style="transition-delay: 0.6s"
+          >
+            <p class="text-neon-red font-semibold mb-1">Contact Us</p>
+            <span class="text-white text-xl font-medium">+91 8778905761</span>
+            <span class="text-white text-xl font-medium">+91 7200579258</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer (Copyright) -->
+    <footer class="py-8 border-t border-gray-900 bg-[#111]">
+      <div class="container mx-auto px-6 text-center text-sm text-gray-600">
+        &copy; 2025 SYNAPSE.DIGITAL. All rights reserved. | Engineered for
+        <span class="text-fire-red">Performance</span>.
+      </div>
+    </footer>
+
+    <!-- JavaScript for Scroll-Triggered Animations -->
+    <script>
+      // Function to initialize the IntersectionObserver for reveal elements
+      function setupScrollAnimations() {
+        const revealElements = document.querySelectorAll(".reveal-element");
+
+        const observerOptions = {
+          root: null, // relative to the viewport
+          rootMargin: "0px",
+          threshold: 0.1, // 10% of the item is visible
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              // Add the visible class to trigger the smooth transition
+              entry.target.classList.add("reveal-visible");
+              // Stop observing after it has been revealed once
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        // Observe each element
+        revealElements.forEach((element) => {
+          observer.observe(element);
+        });
+      }
+
+      // Initialize the animations once the window is fully loaded
+      window.onload = setupScrollAnimations;
+    </script>
+  </body>
+</html>
